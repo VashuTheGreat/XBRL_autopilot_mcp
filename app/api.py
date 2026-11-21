@@ -21,7 +21,8 @@ from app.models import (
 )
 from app.validator import MCAValidator
 from app.mca_error_rules import explain_mca_error
-from app.mcp_server import get_mca_filing_checklist
+from app.mcp_server import mcp, get_mca_filing_checklist
+from mcp.server.transport_security import TransportSecuritySettings
 
 app = FastAPI(
     title="MCA XBRL Validation MCP & Engine",
@@ -37,6 +38,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Register MCP SSE endpoints for remote MCP clients
+try:
+    sec = TransportSecuritySettings(enable_dns_rebinding_protection=False)
+    mcp_sse_subapp = mcp.sse_app(
+        sse_path="/sse",
+        message_path="/messages/",
+        transport_security=sec
+    )
+    for r in mcp_sse_subapp.routes:
+        app.routes.append(r)
+except Exception as e:
+    print(f"Warning: MCP SSE routes could not be registered: {e}")
 
 
 @app.get("/health", tags=["Health"])

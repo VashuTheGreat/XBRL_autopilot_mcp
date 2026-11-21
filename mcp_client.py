@@ -1,10 +1,17 @@
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "httpx>=0.27.0",
+#     "mcp>=1.0.0",
+# ]
+# ///
 """MCP Client Proxy for Hosted MCA Validation on Vercel.
 
 Connects Claude Desktop (via stdio) to the hosted Vercel deployment:
 https://xbrlautopilotmcp.vercel.app
 
 Allows any Claude Desktop user anywhere to validate MCA XBRL instances
-without needing local taxonomy files.
+without needing local files, local clones, or taxonomy setups.
 """
 
 import sys
