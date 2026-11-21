@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrli:xbrl
+  xmlns:in-ca="http://www.icai.org/xbrl/taxonomy/2017-03-31/in-ca"
+  xmlns:ind-as="http://www.icai.org/xbrl/taxonomy/2017-03-31/ind-as"
+  xmlns:xbrli="http://www.xbrl.org/2003/instance"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:link="http://www.w3.org/2003/linkbase"
+  xmlns:iso4217="http://www.xbrl.org/2003/iso4217">
+  <link:schemaRef xlink:href="https://www.mca.gov.in/V3XBRL/2017/03/31/Taxonomy/IndAS/in-ind-as-ent-2017-03-31.xsd" xlink:type="simple"/>
+
+  <xbrli:context id="CY_Instant">
+    <xbrli:entity><xbrli:identifier scheme="http://www.mca.gov.in/CIN">U72200DL2018PTC123456</xbrli:identifier></xbrli:entity>
+    <xbrli:period><xbrli:instant>2026-03-31</xbrli:instant></xbrli:period>
+  </xbrli:context>
+  <xbrli:context id="CY_Duration">
+    <xbrli:entity><xbrli:identifier scheme="http://www.mca.gov.in/CIN">U72200DL2018PTC123456</xbrli:identifier></xbrli:entity>
+    <xbrli:period><xbrli:startDate>2025-04-01</xbrli:startDate><xbrli:endDate>2026-03-31</xbrli:endDate></xbrli:period>
+  </xbrli:context>
+  <xbrli:unit id="INR"><xbrli:measure>iso4217:INR</xbrli:measure></xbrli:unit>
+
+  <!-- Missing PAN and only 1 director with bad DIN -->
+  <in-ca:CorporateIdentityNumber contextRef="CY_Duration">U72200DL2018PTC123456</in-ca:CorporateIdentityNumber>
+  <in-ca:NameOfCompany contextRef="CY_Duration">Sample Company</in-ca:NameOfCompany>
+  <in-ca:AddressOfRegisteredOfficeOfCompany contextRef="CY_Duration">Delhi</in-ca:AddressOfRegisteredOfficeOfCompany>
+  <in-ca:DateOfStartOfReportingPeriod contextRef="CY_Duration">2025-04-01</in-ca:DateOfStartOfReportingPeriod>
+  <in-ca:DateOfEndOfReportingPeriod contextRef="CY_Duration">2026-03-31</in-ca:DateOfEndOfReportingPeriod>
+
+  <!-- Only 1 director with 6 digit DIN instead of 8 -->
+  <in-ca:DirectorIdentificationNumberOfDirector contextRef="CY_Duration">123456</in-ca:DirectorIdentificationNumberOfDirector>
+
+  <ind-as:Assets contextRef="CY_Instant" unitRef="INR" decimals="0">5000000</ind-as:Assets>
+  <ind-as:EquityAndLiabilities contextRef="CY_Instant" unitRef="INR" decimals="0">5000000</ind-as:EquityAndLiabilities>
+</xbrli:xbrl>
